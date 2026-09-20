@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0b0f16" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta
+      name="description"
+      content="Una página personal para celebrar dos meses juntos."
+    />
+    <title>Para ti</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0f16'/%3E%3Cpath d='M32 46c8-6.4 16-13.2 16-21.2C48 18 43.8 15 40 15c-3.2 0-6.1 1.9-8 4.6C30.1 16.9 27.2 15 24 15c-3.8 0-8 3-8 9.8C16 32.8 24 39.6 32 46z' fill='%23b45a66'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Ir al contenido</a>
+
+    <div class="atmosphere" aria-hidden="true"></div>
+
+    <main id="app" class="app" aria-live="polite">
+      <!-- ETAPA 1 — PORTADA -->
+      <section
+        class="stage is-active"
+        data-stage="cover"
+        aria-labelledby="cover-title"
+      >
+        <div class="stage__inner stage__inner--center">
+          <p class="eyebrow">Dos meses</p>
+          <h1 id="cover-title" class="display" tabindex="-1">Para ti...</h1>
+          <p class="lede">Por estos dos meses juntos ❤️</p>
+          <div class="ornament" aria-hidden="true"></div>
+          <button class="btn" type="button" data-next="photo">
+            Tengo algo que decirte
+          </button>
+        </div>
+      </section>
+
+      <!-- ETAPA 2 — NUESTRA FOTO -->
+      <section
+        class="stage"
+        data-stage="photo"
+        hidden
+        aria-labelledby="photo-title"
+      >
+        <div class="stage__inner">
+          <h2 id="photo-title" class="visually-hidden" tabindex="-1">
+            Nuestra foto
+          </h2>
+          <figure class="photo-frame" data-photo-frame>
+            <img
+              data-photo
+              src="/assets/foto-juntos.jpg"
+              alt="Nosotros juntos"
+              width="900"
+              height="1200"
+            />
+            <div class="photo-fallback" hidden>
+              <p>Coloca tu fotografía aquí</p>
+              <p class="photo-fallback__path">/assets/foto-juntos.jpg</p>
+            </div>
+          </figure>
+          <div class="copy-block">
+            <p>Dos meses pueden parecer poco tiempo...</p>
+            <p>
+              pero han sido suficientes para llenar mis días de momentos que
+              quiero seguir guardando.
+            </p>
+          </div>
+          <button class="btn" type="button" data-next="letter">Sigue...</button>
+        </div>
+      </section>
+
+      <!-- ETAPA 3 — LA CARTA -->
+      <section
+        class="stage"
+        data-stage="letter"
+        hidden
+        aria-labelledby="letter-title"
+      >
+        <div class="stage__inner">
+          <p class="eyebrow">Una nota para ti</p>
+          <h2 id="letter-title" class="display display--small" tabindex="-1">
+            Lo que quería decirte
+          </h2>
+          <article class="letter" aria-label="Carta">
+            <p class="letter__greeting">
+              <!-- El nombre se toma de CONFIG.herName en script.js -->
+              Querida <span data-her-name>[NOMBRE]</span>:
+            </p>
+            <p>
+              Hace dos meses comenzamos a compartir nuestros días de una manera
+              diferente.
+            </p>
+            <p>
+              Y aunque dos meses puedan parecer poco, en este tiempo he podido
+              conocerte un poco más, compartir conversaciones, risas, momentos y
+              recuerdos que ya significan mucho para mí.
+            </p>
+            <p>Hoy quería hacerte algo diferente.</p>
+            <p>
+              Porque hay una escena que todos conocemos: alguien tiene que
+              elegir a una princesa.
+            </p>
+            <p>
+              Y después de estos dos meses, si me preguntaran nuevamente a quién
+              elegir...
+            </p>
+            <p class="letter__emphasis">Te elegiría a ti.</p>
+            <p>
+              No porque todo tenga que ser perfecto, sino porque me gusta
+              compartir contigo, conocerte cada día un poco más y descubrir todo
+              lo que podemos seguir viviendo juntos.
+            </p>
+            <p>No quiero prometerte una historia perfecta.</p>
+            <p>Solo quiero seguir construyendo la nuestra, un día a la vez.</p>
+            <p>Gracias por estos dos meses.</p>
+            <p>Y si pudiera volver a elegir...</p>
+            <p class="letter__emphasis">Te volvería a elegir a ti. ❤️</p>
+          </article>
+          <button class="btn" type="button" data-next="choice">Sigue...</button>
+        </div>
+      </section>
+
+      <!-- ETAPA 4 — EL VIDEO -->
+      <section
+        class="stage"
+        data-stage="choice"
+        hidden
+        aria-labelledby="choice-title"
+      >
+        <div class="stage__inner stage__inner--center">
+          <p class="eyebrow" data-choice-intro>Y ahora sí...</p>
+          <h2 id="choice-title" class="display" tabindex="-1">
+            Si tuviera que elegir nuevamente...
+          </h2>
+          <div class="ornament" aria-hidden="true" data-choice-intro></div>
+          <button class="btn" type="button" data-action="reveal-video">
+            Ver mi elección ❤️
+          </button>
+
+          <div class="video-wrap" hidden data-video-wrap>
+            <div class="video-frame">
+              <video
+                id="choice-video"
+                controls
+                playsinline
+                webkit-playsinline
+                preload="none"
+                controlslist="nodownload"
+                title="Mi elección"
+              >
+                Tu navegador no puede reproducir este video.
+              </video>
+              <div class="video-fallback" hidden data-video-fallback>
+                <p>Coloca el video aquí para ver esta escena</p>
+                <p class="photo-fallback__path">/assets/video-farquaad.mp4</p>
+              </div>
+            </div>
+            <p class="video-hint">
+              Puedes darle play, pausar y subir o bajar el volumen.
+            </p>
+            <button class="btn btn--ghost" type="button" data-next="finale">
+              Continuar
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ETAPA 5 — MENSAJE FINAL -->
+      <section
+        class="stage"
+        data-stage="finale"
+        hidden
+        aria-labelledby="finale-title"
+      >
+        <div class="stage__inner stage__inner--center">
+          <h2 id="finale-title" class="display finale-line" tabindex="-1">
+            Hace 2 meses te elegí.
+          </h2>
+          <p class="display display--small finale-line" data-finale-delay="1">
+            Hoy te sigo eligiendo.
+          </p>
+          <p class="lede finale-line" data-finale-delay="2">
+            Y quiero seguir compartiendo mis días contigo.
+          </p>
+          <p class="closing finale-line" data-finale-delay="3">
+            Felices 2 meses ❤️
+          </p>
+          <figure
+            class="photo-frame photo-frame--small finale-line"
+            data-photo-frame
+            data-finale-delay="4"
+          >
+            <img
+              data-photo
+              src="/assets/foto-juntos.jpg"
+              alt="Nosotros juntos"
+              width="400"
+              height="500"
+            />
+            <div class="photo-fallback" hidden>
+              <p>Tu foto irá aquí</p>
+            </div>
+          </figure>
+          <button
+            class="btn btn--ghost finale-line"
+            type="button"
+            data-action="restart"
+            data-finale-delay="5"
+          >
+            Volver al inicio
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

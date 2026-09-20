@@ -1,0 +1,12 @@
+Coloca aquí estos dos archivos con exactamente estos nombres:
+
+1. foto-juntos.jpg
+2. video-farquaad.mp4
+
+Rutas finales que usa la página:
+
+- /assets/foto-juntos.jpg
+- /assets/video-farquaad.mp4
+
+No cambies los nombres a menos que también los actualices en script.js
+(dentro del objeto CONFIG).
