@@ -1,12 +1,13 @@
-Coloca aquí estos dos archivos con exactamente estos nombres:
+Coloca aquí la fotografía con este nombre exacto:
 
 1. foto-juntos.jpg
-2. video-farquaad.mp4
 
-Rutas finales que usa la página:
+Ruta final que usa la página:
 
 - /assets/foto-juntos.jpg
-- /assets/video-farquaad.mp4
 
-No cambies los nombres a menos que también los actualices en script.js
-(dentro del objeto CONFIG).
+El video ya no va en esta carpeta. Se reproduce desde YouTube:
+
+- https://youtu.be/6eaF8RT0J0U
+
+Si quieres cambiar el enlace, edita CONFIG.videoUrl en script.js.

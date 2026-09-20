@@ -12,9 +12,11 @@
     // Cambia [NOMBRE] por el nombre de tu novia:
     herName: "Kate",
 
-    // Coloca estos archivos dentro de /assets
+    // Coloca la foto dentro de /assets
     photoSrc: "/assets/foto-juntos.jpg",
-    videoSrc: "/assets/video-farquaad.mp4",
+
+    // Video de YouTube. Cámbialo aquí si subes otra versión:
+    videoUrl: "https://youtu.be/6eaF8RT0J0U",
   };
 
   const reduceMotion = window.matchMedia(
@@ -23,9 +25,8 @@
 
   const stages = Array.from(document.querySelectorAll("[data-stage]"));
   const photoNodes = document.querySelectorAll("[data-photo]");
-  const video = document.getElementById("choice-video");
   const videoWrap = document.querySelector("[data-video-wrap]");
-  const videoFallback = document.querySelector("[data-video-fallback]");
+  const videoEmbed = document.querySelector("[data-video-embed]");
   const revealVideoBtn = document.querySelector('[data-action="reveal-video"]');
 
   let currentStage = "cover";
@@ -81,8 +82,8 @@
         focusStage(next);
         isTransitioning = false;
 
-        if (nextName === "finale" && video) {
-          video.pause();
+        if (nextName === "finale") {
+          unloadVideo();
         }
 
         if (nextName === "cover") {
@@ -99,18 +100,55 @@
     window.setTimeout(reveal, 620);
   }
 
-  function prepareVideoMetadata() {
-    if (videoReady || !video) return;
-    video.preload = "metadata";
-    video.poster = CONFIG.photoSrc;
-    video.setAttribute("src", CONFIG.videoSrc);
+  function youtubeId(url) {
+    if (!url) return "";
+    try {
+      const parsed = new URL(url);
+      if (parsed.hostname.includes("youtu.be")) {
+        return parsed.pathname.replace("/", "");
+      }
+      if (parsed.searchParams.get("v")) {
+        return parsed.searchParams.get("v");
+      }
+      const parts = parsed.pathname.split("/").filter(Boolean);
+      const embedIndex = parts.indexOf("embed");
+      if (embedIndex >= 0) return parts[embedIndex + 1] || "";
+    } catch (error) {
+      return "";
+    }
+    return "";
+  }
+
+  function unloadVideo() {
+    if (videoEmbed) videoEmbed.replaceChildren();
+    videoReady = false;
+  }
+
+  function loadYouTube() {
+    if (videoReady || !videoEmbed) return;
+
+    const id = youtubeId(CONFIG.videoUrl);
+    if (!id) return;
+
+    const iframe = document.createElement("iframe");
+    iframe.title = "Mi elección";
+    iframe.src =
+      "https://www.youtube-nocookie.com/embed/" +
+      encodeURIComponent(id) +
+      "?rel=0&modestbranding=1&playsinline=1";
+    iframe.allow =
+      "accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.setAttribute("loading", "lazy");
+    videoEmbed.appendChild(iframe);
     videoReady = true;
   }
 
   function revealVideo() {
-    if (!videoWrap || !video) return;
+    if (!videoWrap) return;
 
-    prepareVideoMetadata();
+    loadYouTube();
     videoWrap.hidden = false;
     videoWrap.classList.add("is-visible");
 
@@ -129,25 +167,12 @@
   }
 
   function resetExperience() {
-    if (video) {
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-    }
-
-    videoReady = false;
+    unloadVideo();
 
     if (videoWrap) {
       videoWrap.hidden = true;
       videoWrap.classList.remove("is-visible");
     }
-
-    if (videoFallback) {
-      videoFallback.hidden = true;
-    }
-
-    const frame = video && video.closest(".video-frame");
-    if (frame) frame.classList.remove("is-missing");
 
     if (revealVideoBtn) {
       revealVideoBtn.hidden = false;
@@ -169,15 +194,6 @@
         void node.offsetWidth;
         node.style.animation = "";
       });
-  }
-
-  if (video) {
-    video.addEventListener("error", () => {
-      if (!video.getAttribute("src")) return;
-      const frame = video.closest(".video-frame");
-      if (frame) frame.classList.add("is-missing");
-      if (videoFallback) videoFallback.hidden = false;
-    });
   }
 
   document.addEventListener("click", (event) => {

@@ -24,25 +24,17 @@ Recomendación: usa una imagen liviana (JPG, 1200–1800 px en el lado más larg
 
 Si el archivo todavía no está, la página no se rompe: muestra un recuadro elegante indicando dónde va la foto.
 
-## 2. Dónde colocar el video
+## 2. El video (YouTube)
 
-Guarda el video con este nombre exacto:
-
-```text
-assets/video-farquaad.mp4
-```
-
-La página lo carga desde:
+El video ya no se guarda en `/assets`. Se reproduce desde este enlace:
 
 ```text
-/assets/video-farquaad.mp4
+https://youtu.be/6eaF8RT0J0U
 ```
 
-El archivo **no** va incrustado en el HTML. Se mantiene como recurso independiente.
+El iframe de YouTube **no se carga al abrir la portada**. Solo aparece cuando ella pulsa **Ver mi elección**.
 
-El video **no se descarga al abrir la portada**. Su ruta se asigna recién cuando ella pulsa **Ver mi elección**, y se usa `preload="metadata"` para pedir lo mínimo posible hasta que lo reproduzca.
-
-Si el archivo todavía no está, aparece un recuadro indicando la ruta esperada.
+Para cambiar el video, edita `videoUrl` en `script.js`. El video de YouTube debe estar en **Público** o **Oculto (unlisted)**. Si está en Privado, el reproductor no podrá mostrarlo.
 
 ## 3. Cómo cambiar el nombre
 
@@ -52,7 +44,7 @@ Abre `script.js`. Arriba del todo está este bloque:
 const CONFIG = {
   herName: "Kate",
   photoSrc: "/assets/foto-juntos.jpg",
-  videoSrc: "/assets/video-farquaad.mp4",
+  videoUrl: "https://youtu.be/6eaF8RT0J0U",
 };
 ```
 
@@ -64,7 +56,7 @@ herName: "Kate",
 
 Ese valor reemplaza `[NOMBRE]` en la carta: **Querida Kate:**
 
-Si también quieres cambiar la foto o el video, actualiza `photoSrc` y `videoSrc` en el mismo objeto.
+Si también quieres cambiar la foto o el video, actualiza `photoSrc` y `videoUrl` en el mismo objeto.
 
 Los demás textos se pueden editar directamente en `index.html`.
 
@@ -116,56 +108,24 @@ Si prefieres desplegar desde GitHub:
 3. Deja el **publish directory** vacío o como `.`
 4. No hay comando de build
 
-Este proyecto ya incluye un `netlify.toml` para publicar la carpeta raíz y servir el MP4 con el tipo correcto.
+Este proyecto ya incluye un `netlify.toml` para publicar la carpeta raíz.
 
 Recomendación: como es una página íntima, usa una URL discreta. En Netlify puedes cambiar el nombre del sitio, por ejemplo `para-ti-dos-meses`.
 
-## 6. Si el video de 100 MB da problemas
+## 6. Si el video de YouTube no se ve
 
-Un MP4 de ~100 MB puede fallar por tres motivos distintos:
-
-| Problema | Qué pasa |
-| --- | --- |
-| GitHub | Rechaza archivos de 100 MB o más. Aviso desde 50 MB. |
-| Carga en el teléfono | Puede tardar mucho o cortarse con datos móviles. |
-| Netlify | El archivo puede subirse, pero el primer play sigue siendo pesado. |
-
-### Opción recomendada: comprimir el video
-
-Usa [HandBrake](https://handbrake.fr/) o [VLC](https://www.videolan.org/):
-
-- Formato: MP4
-- Códec: H.264
-- Resolución: 720p o 1080p
-- Calidad: RF 22–24
-- Audio: AAC 128 kbps
-
-En la mayoría de los casos puedes bajarlo a **15–40 MB** sin que se note en el teléfono. Sigue llamándose `video-farquaad.mp4` y déjalo en `/assets`.
-
-### Opción B: hospedarlo fuera y solo cambiar la URL
-
-Si no quieres subir el MP4 a Netlify, súbelo a un servicio de archivos o video (Cloudinary, Bunny, Cloudflare R2, etc.) y cambia en `script.js`:
-
-```javascript
-videoSrc: "https://tu-dominio.com/video-farquaad.mp4",
-```
-
-La página seguirá usando la misma etiqueta `<video>`. No hace falta backend.
-
-Evita Google Drive o Dropbox para esto: sus enlaces suelen bloquear la reproducción directa.
-
-### Opción C: desplegar a mano, no por Git
-
-Si el archivo pesa menos de 100 MB y no quieres pasarlo por GitHub, usa el deploy manual de Netlify (arrastrar la carpeta). Así evitas el límite de GitHub.
+- Confirma que no esté en **Privado**. Usa **Oculto** si no quieres que aparezca en tu canal.
+- En YouTube: el video → **Mostrar más** → revisa que se permita la reproducción en otros sitios.
+- Si cambias el enlace, actualiza `videoUrl` en `script.js` y vuelve a desplegar.
 
 ## Notas de diseño y uso
 
 - La experiencia no es una página para hacer scroll: avanza por etapas.
 - El video no se reproduce solo ni con sonido automático.
-- El reproductor nativo permite play, pausa y volumen.
+- YouTube aporta play, pausa y volumen.
 - Si las fuentes de Google no cargan, se usan Georgia y la sans del sistema.
 - Si el dispositivo pide menos movimiento (`prefers-reduced-motion`), las animaciones se simplifican.
-- La foto y el video se adaptan sin deformarse (`object-fit: contain`).
+- La foto se adapta sin deformarse (`object-fit: contain`).
 
 ## Estructura
 
@@ -178,5 +138,4 @@ README.md
 assets/
   COLOCA-AQUI-TUS-ARCHIVOS.txt
   foto-juntos.jpg          ← la agregas tú
-  video-farquaad.mp4       ← lo agregas tú
 ```
