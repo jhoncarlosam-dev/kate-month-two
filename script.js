@@ -19,6 +19,10 @@
 
     // Video de YouTube. Cámbialo aquí si subes otra versión:
     videoUrl: "https://youtu.be/6eaF8RT0J0U",
+
+    // Encabezado de la carta
+    letterPlace: "Cúcuta",
+    letterDate: "20 de septiembre de 2026",
   };
 
   const reduceMotion = window.matchMedia(
@@ -38,6 +42,25 @@
   document.querySelectorAll("[data-her-name]").forEach((node) => {
     node.textContent = CONFIG.herName;
   });
+
+  document.querySelectorAll("[data-letter-place]").forEach((node) => {
+    node.textContent = CONFIG.letterPlace;
+  });
+
+  document.querySelectorAll("[data-letter-date]").forEach((node) => {
+    node.textContent = CONFIG.letterDate;
+  });
+
+  const letterParagraphs = document.querySelectorAll(".letter p");
+  letterParagraphs.forEach((paragraph, index) => {
+    paragraph.style.setProperty("--n", String(index));
+  });
+
+  const letterButton = document.querySelector('[data-stage="letter"] .btn');
+  if (letterButton) {
+    const buttonDelay = Math.min(3200, 600 + letterParagraphs.length * 90);
+    letterButton.style.animationDelay = buttonDelay + "ms";
+  }
 
   photoNodes.forEach((img) => {
     const frame = img.closest("[data-photo-frame]");

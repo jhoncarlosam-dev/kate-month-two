@@ -364,9 +364,15 @@ button {
   pointer-events: none;
 }
 
+.letter em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--paper-ink);
+}
+
 .letter p {
   margin: 0 0 0.95rem;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   line-height: 1.7;
   color: var(--paper-muted);
   opacity: 0;
@@ -383,9 +389,18 @@ button {
   color: var(--paper-ink);
 }
 
+.letter__meta {
+  text-align: right;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--paper-ink);
+}
+
 .letter__greeting {
   font-size: 1.25rem;
   font-style: italic;
+  text-align: left;
 }
 
 .letter__emphasis {
@@ -399,21 +414,8 @@ button {
 
 .stage[data-stage="letter"].is-active .letter p {
   animation: rise 780ms var(--ease) forwards;
+  animation-delay: calc(var(--n, 0) * 130ms);
 }
-
-.stage[data-stage="letter"].is-active .letter p:nth-child(1) { animation-delay: 80ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(2) { animation-delay: 220ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(3) { animation-delay: 360ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(4) { animation-delay: 500ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(5) { animation-delay: 640ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(6) { animation-delay: 780ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(7) { animation-delay: 920ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(8) { animation-delay: 1060ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(9) { animation-delay: 1200ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(10) { animation-delay: 1340ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(11) { animation-delay: 1480ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(12) { animation-delay: 1620ms; }
-.stage[data-stage="letter"].is-active .letter p:nth-child(13) { animation-delay: 1760ms; }
 
 .stage[data-stage="letter"] .btn {
   opacity: 0;
