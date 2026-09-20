@@ -6,23 +6,23 @@ El hilo de la experiencia es:
 
 > Después de 2 meses, te sigo eligiendo para compartir mis días.
 
-## 1. Dónde colocar la fotografía
+## 1. Dónde colocar las fotografías
 
-Guarda la foto con este nombre exacto:
-
-```text
-assets/foto-juntos.jpg
-```
-
-La página la carga desde:
+Ya están en el proyecto:
 
 ```text
-/assets/foto-juntos.jpg
+assets/foto1.jpg   → el primer mes (etapa inicial)
+assets/foto2.jpg   → nosotros juntos (cierre)
 ```
 
-Recomendación: usa una imagen liviana (JPG, 1200–1800 px en el lado más largo). No hace falta que sea enorme; se verá bien enmarcada en el teléfono.
+La página las carga desde:
 
-Si el archivo todavía no está, la página no se rompe: muestra un recuadro elegante indicando dónde va la foto.
+```text
+/assets/foto1.jpg
+/assets/foto2.jpg
+```
+
+Si quieres reemplazarlas, usa los mismos nombres. Si el archivo no está, la página muestra un recuadro indicando la ruta.
 
 ## 2. El video (YouTube)
 
@@ -43,7 +43,8 @@ Abre `script.js`. Arriba del todo está este bloque:
 ```javascript
 const CONFIG = {
   herName: "Kate",
-  photoSrc: "/assets/foto-juntos.jpg",
+  photoStartSrc: "/assets/foto1.jpg",
+  photoEndSrc: "/assets/foto2.jpg",
   videoUrl: "https://youtu.be/6eaF8RT0J0U",
 };
 ```
@@ -56,7 +57,7 @@ herName: "Kate",
 
 Ese valor reemplaza `[NOMBRE]` en la carta: **Querida Kate:**
 
-Si también quieres cambiar la foto o el video, actualiza `photoSrc` y `videoUrl` en el mismo objeto.
+Si también quieres cambiar las fotos o el video, actualiza `photoStartSrc`, `photoEndSrc` y `videoUrl` en el mismo objeto.
 
 Los demás textos se pueden editar directamente en `index.html`.
 
@@ -137,5 +138,6 @@ netlify.toml
 README.md
 assets/
   COLOCA-AQUI-TUS-ARCHIVOS.txt
-  foto-juntos.jpg          ← la agregas tú
+  foto1.jpg
+  foto2.jpg
 ```

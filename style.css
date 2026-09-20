@@ -270,6 +270,7 @@ button {
 .photo-frame {
   position: relative;
   width: min(100%, 19.5rem);
+  min-width: 0;
   margin: 0;
   padding: 0.7rem;
   background:
@@ -290,12 +291,17 @@ button {
 }
 
 .photo-frame--small {
-  width: min(42vw, 8.5rem);
+  width: 7.2rem;
+  max-width: 42%;
+  flex: 0 0 auto;
   padding: 0.4rem;
 }
 
 .photo-frame--small img {
-  max-height: 8.8rem;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
 }
 
 .photo-frame.is-missing img {

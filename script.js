@@ -12,8 +12,10 @@
     // Cambia [NOMBRE] por el nombre de tu novia:
     herName: "Kate",
 
-    // Coloca la foto dentro de /assets
-    photoSrc: "/assets/foto-juntos.jpg",
+    // foto1: Kate, el primer mes (etapa inicial)
+    // foto2: nosotros juntos (cierre)
+    photoStartSrc: "/assets/foto1.jpg",
+    photoEndSrc: "/assets/foto2.jpg",
 
     // Video de YouTube. Cámbialo aquí si subes otra versión:
     videoUrl: "https://youtu.be/6eaF8RT0J0U",
@@ -46,7 +48,11 @@
       if (fallback) fallback.hidden = false;
     });
 
-    img.src = CONFIG.photoSrc;
+    const sources = {
+      start: CONFIG.photoStartSrc,
+      end: CONFIG.photoEndSrc,
+    };
+    img.src = sources[img.dataset.photo] || CONFIG.photoStartSrc;
   });
 
   function getStage(name) {

@@ -1,13 +1,16 @@
-Coloca aquí la fotografía con este nombre exacto:
+Fotos de la experiencia:
 
-1. foto-juntos.jpg
+1. foto1.jpg  → etapa inicial (Kate, el primer mes)
+2. foto2.jpg  → cierre (nosotros juntos)
 
-Ruta final que usa la página:
+Rutas que usa la página:
 
-- /assets/foto-juntos.jpg
+- /assets/foto1.jpg
+- /assets/foto2.jpg
 
-El video ya no va en esta carpeta. Se reproduce desde YouTube:
+Si cambias los nombres, actualízalos también en script.js
+(dentro del objeto CONFIG).
+
+El video se reproduce desde YouTube:
 
 - https://youtu.be/6eaF8RT0J0U
-
-Si quieres cambiar el enlace, edita CONFIG.videoUrl en script.js.
